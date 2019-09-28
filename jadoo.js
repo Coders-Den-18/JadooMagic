@@ -5,57 +5,24 @@ const random = require('random');
 
 const FILE_PATH = './data.json';
 
-// const makeCommit = n => {
+const makeCommit = n => {
 
-//     if (n === 0 ) return simpleGit().push();
+    if (n === 0 ) return simpleGit().push();
 
-//     const x = random.int(0,54);
-//     const y = random.int(0,6);
+    const x = random.int(0,54);
+    const y = random.int(0,6);
 
-//     const DATE = moment().subtract(1, 'y').add(1, 'd')
-//                     .add(x,'w').add(y,'d')
-//                     .format()
-
-//     const data = {
-//         date: DATE
-//     }
-
-//     jsonfile.writeFile(FILE_PATH, data, () => {
-//         simpleGit().add([FILE_PATH]).commit(DATE, { '--date': DATE }, makeCommit(this, --n));
-//     });
-// };
-
-// makeCommit(1000);
-
-const writeName = () => {
-    for (let i = 0; i < 7; i++) {
-
-        // Inner for loop for logic execution 
-        for (let j = 0; j <= 7 / 2; j++) {
-
-            // prints two column lines 
-            if ((j == 0 || j == 7 / 2) && i != 0 ||
-
-                // print first line of alphabet 
-                i == 0 && j != 0 && j != 7 / 2 ||
-
-                // prints middle line 
-                i == 7 / 2) {
-
-                const DATE = moment().subtract(2, 'y').add(i, 'w').add(j, 'd')
+    const DATE = moment().subtract(1, 'y').add(1, 'd')
+                    .add(x,'w').add(y,'d')
                     .format()
 
-                const data = {
-                    date: DATE
-                }
-
-                jsonfile.writeFile(FILE_PATH, data, () => {
-                    simpleGit().add([FILE_PATH]).commit(DATE, { '--date': DATE });
-                });
-            }
-        }
+    const data = {
+        date: DATE
     }
-    simpleGit().push();
+
+    jsonfile.writeFile(FILE_PATH, data, () => {
+        simpleGit().add([FILE_PATH]).commit(DATE, { '--date': DATE }, makeCommit(this, --n));
+    });
 };
 
-writeName();
+makeCommit(1000);
